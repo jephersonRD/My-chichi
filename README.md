@@ -9,7 +9,7 @@
   
   [![Love](https://img.shields.io/badge/Amor-Infinito-ff1464?style=for-the-badge&logo=heart&logoColor=white)](https://github.com)
   [![Status](https://img.shields.io/badge/Relación-Activa-success?style=for-the-badge)](https://github.com)
-  [![Days](https://img.shields.io/badge/Días_Juntos-Ver_Contador-764ba2?style=for-the-badge&logo=calendar&logoColor=white)](./contador-dias.html)
+  [![Days](https://img.shields.io/badge/Días_Juntos-Ver_Contador-764ba2?style=for-the-badge&logo=calendar&logoColor=white)](#-contador-de-días-en-tiempo-real)
 </div>
 
 ---
@@ -43,6 +43,21 @@ Este sitio web fue creado con todo mi amor para **Darlenis**, mi novia, mi chich
 ✅ Tablets (iPad, Android)  
 ✅ Desktop/Laptop (Windows, Mac, Linux)
 
+## 📅 Contador de Días en Tiempo Real
+
+Para ver el contador de días que llevamos juntos desde el **19 de Enero de 2026**:
+
+1. Descarga o clona este repositorio
+2. Abre el archivo `contador-dias.html` en tu navegador
+3. Verás en tiempo real:
+   - ⏱️ Días exactos juntos
+   - 📅 Semanas de amor
+   - 📆 Meses compartidos
+   - ⏰ Horas vividas juntos
+
+> **💡 Para GitHub Pages:** Si publicas este repositorio en GitHub Pages, el enlace será:  
+> `https://tu-usuario.github.io/nombre-repo/contador-dias.html`
+
 ## 🚀 Cómo Ver el Sitio
 
 1. Clona este repositorio:
@@ -52,7 +67,18 @@ git clone https://github.com/tu-usuario/mi-amor-eterno.git
 
 2. Abre `index.html` en tu navegador favorito
 
-3. ¡Disfruta de la experiencia! 💕
+3. Desde la página principal, haz clic en **"📅 Días Juntos"** para ver el contador
+
+4. ¡Disfruta de la experiencia! 💕
+
+### 🌐 Publicar en GitHub Pages
+
+Para que el sitio funcione online:
+
+1. Ve a Settings → Pages en tu repositorio
+2. Selecciona la rama `main` como fuente
+3. Guarda y espera unos minutos
+4. Tu sitio estará en: `https://tu-usuario.github.io/nombre-repo/`
 
 ## 📂 Estructura del Proyecto
 
