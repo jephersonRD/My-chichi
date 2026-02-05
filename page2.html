@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100 Razones Por Las Que Te Amo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Georgia', serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Contenedor de fuegos artificiales */
+        .fireworks-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Carta principal */
+        .letter-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .letter {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .letter-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .letter-header h1 {
+            font-size: 42px;
+            color: #ff1464;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .letter-header h2 {
+            font-size: 28px;
+            color: #764ba2;
+            font-weight: normal;
+            font-style: italic;
+        }
+
+        .reasons-list {
+            columns: 2;
+            column-gap: 30px;
+            margin-top: 30px;
+        }
+
+        .reason-item {
+            break-inside: avoid;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(255, 20, 100, 0.05);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .reason-item:hover {
+            background: rgba(255, 20, 100, 0.15);
+            transform: translateX(5px);
+        }
+
+        .reason-number {
+            color: #ff1464;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .reason-text {
+            color: #333;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .letter-footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #ff1464;
+        }
+
+        .letter-footer p {
+            color: #333;
+            font-size: 20px;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .signature {
+            font-size: 28px;
+            color: #ff1464;
+            font-family: 'Brush Script MT', cursive;
+        }
+
+        /* Botones de navegación */
+        .nav-buttons {
+            position: fixed;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 30px;
+            z-index: 10000;
+            pointer-events: none;
+        }
+
+        .nav-btn {
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            pointer-events: all;
+        }
+
+        .back-nav-btn {
+            background: linear-gradient(135deg, #ff6b6b 0%, #c92a2a 100%);
+        }
+
+        .back-nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+            background: linear-gradient(135deg, #c92a2a 0%, #ff6b6b 100%);
+        }
+
+        .continue-nav-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .continue-nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+
+        .nav-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Fuegos artificiales y corazones */
+        .firework {
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .heart-particle {
+            position: absolute;
+            font-size: 20px;
+            animation: explode 2s ease-out forwards;
+            pointer-events: none;
+        }
+
+        @keyframes explode {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(0);
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--tx), var(--ty)) scale(1);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .letter-container {
+                max-width: 700px;
+                margin: 40px auto;
+            }
+
+            .letter {
+                padding: 40px 35px;
+            }
+
+            .letter-header h1 {
+                font-size: 38px;
+            }
+
+            .letter-header h2 {
+                font-size: 26px;
+            }
+
+            .reasons-list {
+                column-gap: 25px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .letter-container {
+                margin: 30px auto;
+                padding: 15px;
+            }
+
+            .letter {
+                padding: 30px 20px;
+            }
+
+            .letter-header h1 {
+                font-size: 28px;
+            }
+
+            .letter-header h2 {
+                font-size: 20px;
+            }
+
+            .reasons-list {
+                columns: 1;
+                column-gap: 0;
+            }
+
+            .reason-item {
+                margin-bottom: 12px;
+                padding: 8px;
+            }
+
+            .reason-number {
+                font-size: 16px;
+            }
+
+            .reason-text {
+                font-size: 14px;
+            }
+
+            .letter-footer p {
+                font-size: 18px;
+            }
+
+            .signature {
+                font-size: 24px;
+            }
+
+            .nav-buttons {
+                bottom: 20px;
+                padding: 0 20px;
+            }
+
+            .nav-btn {
+                padding: 12px 30px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .letter-container {
+                margin: 20px auto;
+                padding: 10px;
+            }
+
+            .letter {
+                padding: 25px 15px;
+                border-radius: 15px;
+            }
+
+            .letter-header {
+                margin-bottom: 30px;
+            }
+
+            .letter-header h1 {
+                font-size: 24px;
+                line-height: 1.3;
+            }
+
+            .letter-header h2 {
+                font-size: 18px;
+            }
+
+            .reason-item {
+                margin-bottom: 10px;
+                padding: 6px;
+            }
+
+            .reason-number {
+                font-size: 14px;
+            }
+
+            .reason-text {
+                font-size: 13px;
+                line-height: 1.5;
+            }
+
+            .letter-footer {
+                margin-top: 30px;
+                padding-top: 20px;
+            }
+
+            .letter-footer p {
+                font-size: 16px;
+            }
+
+            .signature {
+                font-size: 22px;
+            }
+
+            .nav-buttons {
+                bottom: 15px;
+                padding: 0 15px;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .nav-btn {
+                padding: 10px 25px;
+                font-size: 14px;
+                width: 100%;
+                max-width: 200px;
+            }
+
+            .heart-particle {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 390px) {
+            .letter {
+                padding: 20px 12px;
+            }
+
+            .letter-header h1 {
+                font-size: 20px;
+            }
+
+            .letter-header h2 {
+                font-size: 16px;
+            }
+
+            .reason-text {
+                font-size: 12px;
+            }
+
+            .letter-footer p {
+                font-size: 14px;
+            }
+
+            .signature {
+                font-size: 20px;
+            }
+
+            .nav-btn {
+                padding: 8px 20px;
+                font-size: 13px;
+            }
+        }
+
+        @media (orientation: landscape) and (max-height: 600px) {
+            .letter-container {
+                margin: 20px auto;
+            }
+
+            .letter {
+                padding: 20px;
+            }
+
+            .nav-buttons {
+                bottom: 10px;
+            }
+
+            .nav-btn {
+                padding: 8px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Contenedor de fuegos artificiales -->
+    <div class="fireworks-container" id="fireworksContainer"></div>
+
+    <!-- Botones de navegación -->
+    <div class="nav-buttons">
+        <button class="nav-btn back-nav-btn" id="backButton">Retroceder</button>
+        <button class="nav-btn continue-nav-btn" onclick="window.location.href='page3.html'">Seguir</button>
+    </div>
+
+    <!-- Carta principal -->
+    <div class="letter-container">
+        <div class="letter">
+            <div class="letter-header">
+                <h1>💖 100 Razones Por Las Que Te Amo 💖</h1>
+                <h2>Para mi hermosa Darlenis</h2>
+            </div>
+
+            <div class="reasons-list" id="reasonsList">
+                <!-- Las razones se generarán dinámicamente -->
+            </div>
+
+            <div class="letter-footer">
+                <p>"Cada día encuentro nuevas razones para amarte más"</p>
+                <div class="signature">Con todo mi amor ❤️</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 100 razones por las que amas a Darlenis
+        const reasons = [
+            "Tu sonrisa ilumina mis días",
+            "Tus ojos me hacen perderme en ellos",
+            "Tu risa es mi canción favorita",
+            "Me haces sentir especial cada día",
+            "Tu forma de cuidarme",
+            "Como me entiendes sin palabras",
+            "Tu dulzura infinita",
+            "Tu paciencia conmigo",
+            "Como me apoyas en todo",
+            "Tu belleza interior y exterior",
+            "Tus abrazos que lo curan todo",
+            "Como me haces reír",
+            "Tu inteligencia me fascina",
+            "Tu forma de ver la vida",
+            "Como me haces mejor persona",
+            "Tus besos que me hacen volar",
+            "Tu voz al despertar",
+            "Como dices mi nombre",
+            "Tu ternura conmigo",
+            "Como me miras con amor",
+            "Tu manera de bailar",
+            "Como cocinas para mí",
+            "Tus mensajes de buenos días",
+            "Tu forma de caminar",
+            "Como te preocupas por mí",
+            "Tu corazón tan grande",
+            "Tus sueños que compartimos",
+            "Como me escuchas",
+            "Tu lealtad inquebrantable",
+            "Como me defiendes",
+            "Tu honestidad siempre",
+            "Tus manos en las mías",
+            "Como hueles tan rico",
+            "Tu forma de vestir",
+            "Como me sorprendes",
+            "Tu creatividad",
+            "Como cantas en la ducha",
+            "Tus ojitos cuando sonríes",
+            "Como me perdonas",
+            "Tu generosidad",
+            "Como compartes conmigo",
+            "Tus planes para nuestro futuro",
+            "Como me cuidas cuando estoy enfermo",
+            "Tu valentía ante los problemas",
+            "Como me motivas a mejorar",
+            "Tus consejos sabios",
+            "Como celebras mis logros",
+            "Tu energía positiva",
+            "Como me tranquilizas",
+            "Tus abrazos por la espalda",
+            "Como duermes a mi lado",
+            "Tu pelo que me encanta acariciar",
+            "Como me haces sentir amado",
+            "Tus detalles inesperados",
+            "Como recuerdas lo importante",
+            "Tu memoria para fechas especiales",
+            "Como bailas solo para mí",
+            "Tus chistes malos que me hacen reír",
+            "Como me animas cuando estoy triste",
+            "Tu forma de soñar despierta",
+            "Como me miras cuando hablo",
+            "Tus planes aventureros",
+            "Como compartes tus secretos",
+            "Tu confianza en nosotros",
+            "Como me esperas",
+            "Tus palabras de amor",
+            "Como me besas la frente",
+            "Tu paciencia sin límites",
+            "Como aceptas mis defectos",
+            "Tus ganas de crecer juntos",
+            "Como me haces sentir seguro",
+            "Tu forma de amar sin condiciones",
+            "Como respetas mis espacios",
+            "Tus abrazos eternos",
+            "Como confías en mí",
+            "Tu forma de caminar a mi lado",
+            "Como sueñas conmigo",
+            "Tus prioridades donde estoy yo",
+            "Como me incluyes en tu vida",
+            "Tu familia que me acepta",
+            "Como peleas por nosotros",
+            "Tus esfuerzos por hacerme feliz",
+            "Como valoramos lo mismo",
+            "Tu manera de amarme cada día",
+            "Como me haces sentir en casa",
+            "Tus planes para envejecer juntos",
+            "Como me esperas para comer",
+            "Tu forma de cocinar mi comida favorita",
+            "Como guardas mis fotos",
+            "Tus mensajes de te amo",
+            "Como me presentas con orgullo",
+            "Tu manera de presumirme",
+            "Como hablas de nuestro futuro",
+            "Tus ojos que brillan al verme",
+            "Como te ríes de mis ocurrencias",
+            "Tu apoyo incondicional",
+            "Como celebras mis pequeños logros",
+            "Tu manera de hacerme sentir único",
+            "Como me eliges cada día",
+            "Porque eres tú, mi Darlenis",
+            "Y porque te amaré por siempre"
+        ];
+
+        // Generar lista de razones
+        const reasonsList = document.getElementById('reasonsList');
+        reasons.forEach((reason, index) => {
+            const reasonItem = document.createElement('div');
+            reasonItem.className = 'reason-item';
+            reasonItem.innerHTML = `
+                <span class="reason-number">${index + 1}.</span>
+                <span class="reason-text">${reason}</span>
+            `;
+            reasonsList.appendChild(reasonItem);
+        });
+
+        // Función para crear fuegos artificiales con corazones
+        function createFirework(x, y) {
+            const container = document.getElementById('fireworksContainer');
+            const colors = ['❤️', '💕', '💖', '💗', '💓', '💝', '💘', '💞'];
+            const particleCount = 15;
+
+            for (let i = 0; i < particleCount; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart-particle';
+                heart.textContent = colors[Math.floor(Math.random() * colors.length)];
+                heart.style.left = x + 'px';
+                heart.style.top = y + 'px';
+
+                // Calcular dirección aleatoria
+                const angle = (Math.PI * 2 * i) / particleCount;
+                const velocity = 100 + Math.random() * 100;
+                const tx = Math.cos(angle) * velocity;
+                const ty = Math.sin(angle) * velocity;
+
+                heart.style.setProperty('--tx', tx + 'px');
+                heart.style.setProperty('--ty', ty + 'px');
+
+                container.appendChild(heart);
+
+                // Eliminar después de la animación
+                setTimeout(() => {
+                    heart.remove();
+                }, 2000);
+            }
+        }
+
+        // Generar fuegos artificiales automáticamente
+        function randomFirework() {
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * (window.innerHeight * 0.6); // Solo en la parte superior
+            createFirework(x, y);
+        }
+
+        // Lanzar fuegos artificiales cada 1.5 segundos
+        setInterval(randomFirework, 1500);
+
+        // Fuegos artificiales al hacer scroll
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.scrollY;
+            if (Math.abs(currentScroll - lastScroll) > 100) {
+                randomFirework();
+                lastScroll = currentScroll;
+            }
+        });
+
+        // Fuegos artificiales iniciales
+        setTimeout(() => {
+            for (let i = 0; i < 3; i++) {
+                setTimeout(randomFirework, i * 500);
+            }
+        }, 500);
+
+        // Botón retroceder - volver al video
+        document.getElementById('backButton').addEventListener('click', function() {
+            // Guardar un flag para indicar que debe mostrar el video
+            sessionStorage.setItem('showVideo', 'true');
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

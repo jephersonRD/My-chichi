@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestro Amor Eterno</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* Fondo con corazones animados */
+        .hearts-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: rotate(45deg);
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: 10px;
+            top: 0;
+        }
+
+        /* Posiciones y delays únicos para cada corazón */
+        .heart:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 12s; }
+        .heart:nth-child(2) { left: 25%; animation-delay: 2s; animation-duration: 14s; }
+        .heart:nth-child(3) { left: 40%; animation-delay: 4s; animation-duration: 16s; }
+        .heart:nth-child(4) { left: 55%; animation-delay: 1s; animation-duration: 13s; }
+        .heart:nth-child(5) { left: 70%; animation-delay: 3s; animation-duration: 15s; }
+        .heart:nth-child(6) { left: 85%; animation-delay: 5s; animation-duration: 17s; }
+        .heart:nth-child(7) { left: 15%; animation-delay: 6s; animation-duration: 11s; }
+        .heart:nth-child(8) { left: 90%; animation-delay: 7s; animation-duration: 18s; }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(45deg) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(405deg) scale(1);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #764ba2;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .videos-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .video-wrapper {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+        }
+
+        video {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .love-messages {
+            text-align: center;
+            line-height: 2;
+            color: #333;
+        }
+
+        .love-messages h2 {
+            color: #764ba2;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .message-text {
+            font-size: 1.2rem;
+            margin: 15px 0;
+            padding: 15px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-radius: 10px;
+            border-left: 4px solid #764ba2;
+            animation: slideIn 1s ease-out;
+        }
+
+        .message-text:nth-child(2) { animation-delay: 0.2s; }
+        .message-text:nth-child(3) { animation-delay: 0.4s; }
+        .message-text:nth-child(4) { animation-delay: 0.6s; }
+        .message-text:nth-child(5) { animation-delay: 0.8s; }
+        .message-text:nth-child(6) { animation-delay: 1s; }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .date-highlight {
+            color: #764ba2;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .back-btn {
+            display: block;
+            margin: 30px auto 0;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .back-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 30px;
+            }
+
+            .title {
+                font-size: 2rem;
+            }
+
+            .videos-container {
+                gap: 15px;
+            }
+
+            .video-wrapper {
+                min-width: 250px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            .title {
+                font-size: 1.6rem;
+            }
+
+            .love-messages h2 {
+                font-size: 1.4rem;
+            }
+
+            .message-text {
+                font-size: 0.95rem;
+                padding: 12px;
+            }
+
+            .videos-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .video-wrapper {
+                max-width: 100%;
+                min-width: auto;
+            }
+
+            .back-btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+
+            div[style*="display: flex"] {
+                flex-direction: column !important;
+                gap: 15px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+                margin: 5px;
+                border-radius: 15px;
+            }
+
+            .title {
+                font-size: 1.3rem;
+                margin-bottom: 20px;
+            }
+
+            .love-messages h2 {
+                font-size: 1.2rem;
+                margin-bottom: 15px;
+            }
+
+            .message-text {
+                font-size: 0.85rem;
+                padding: 10px;
+                line-height: 1.6;
+            }
+
+            .date-highlight {
+                font-size: 1rem;
+            }
+
+            .back-btn {
+                padding: 10px 25px;
+                font-size: 0.9rem;
+                width: 100%;
+                max-width: 200px;
+            }
+
+            video {
+                border-radius: 10px;
+            }
+        }
+
+        @media (max-width: 390px) {
+            .title {
+                font-size: 1.1rem;
+            }
+
+            .love-messages h2 {
+                font-size: 1rem;
+            }
+
+            .message-text {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fondo con corazones animados -->
+    <div class="hearts-background">
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+    </div>
+
+    <div class="container">
+        <h1 class="title">💕 Nuestro Amor Eterno 💕</h1>
+
+        <!-- Contenedor de videos -->
+        <div class="videos-container">
+            <div class="video-wrapper">
+                <video controls autoplay muted loop>
+                    <source src="Assets/2.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+            </div>
+            <div class="video-wrapper">
+                <video controls autoplay muted loop>
+                    <source src="Assets/3.pm4.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+            </div>
+        </div>
+
+        <!-- Mensajes de amor -->
+        <div class="love-messages">
+            <h2>❤️ Mi Amor Infinito por Ti ❤️</h2>
+            
+            <p class="message-text">
+                <span class="highlight">Darlenis</span>, cada día que pasa a tu lado es un regalo del cielo. 
+                Te amo con todo mi corazón y cada fibra de mi ser.
+            </p>
+
+            <p class="message-text">
+                Quiero estar contigo <span class="highlight">hasta la vejez</span>, tomados de la mano, 
+                viendo atardeceres juntos y creando miles de memorias más.
+            </p>
+
+            <p class="message-text">
+                Comenzamos nuestra relación el <span class="date-highlight">19 de enero de 2026</span>, 
+                pero siento que he pasado <span class="highlight">miles de años hermosos</span> contigo.
+            </p>
+
+            <p class="message-text">
+                Cada momento contigo se siente como una eternidad de felicidad. 
+                Eres mi presente, mi futuro y mi para siempre.
+            </p>
+
+            <p class="message-text">
+                Te elijo hoy, mañana y todos los días de mi vida. 
+                <span class="highlight">Te amo, Darlenis</span> 💕
+            </p>
+        </div>
+
+        <div style="display: flex; gap: 20px; justify-content: center;">
+            <button class="back-btn" onclick="window.location.href='page2.html'">
+                ← Volver
+            </button>
+            <button class="back-btn" onclick="window.location.href='page4.html'" style="background: linear-gradient(135deg, #ff6b6b 0%, #c92a2a 100%);">
+                Fin 🌷
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Animación adicional al cargar
+        window.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.container').style.opacity = '0';
+            setTimeout(() => {
+                document.querySelector('.container').style.transition = 'opacity 1s ease-in';
+                document.querySelector('.container').style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
