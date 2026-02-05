@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Días - Darlenis & Jepherson</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #ff1464;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .counter {
+            font-size: 5rem;
+            font-weight: bold;
+            color: #764ba2;
+            margin: 30px 0;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .label {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .date-info {
+            font-size: 1.2rem;
+            color: #666;
+            margin-top: 30px;
+            font-style: italic;
+        }
+
+        .hearts {
+            font-size: 3rem;
+            margin: 20px 0;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .details {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 20, 100, 0.1);
+            border-radius: 10px;
+        }
+
+        .detail-item {
+            font-size: 1.1rem;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .detail-number {
+            font-weight: bold;
+            color: #ff1464;
+            font-size: 1.3rem;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .counter {
+                font-size: 3.5rem;
+            }
+
+            .label {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💕 Darlenis & Jepherson 💕</h1>
+        
+        <div class="hearts">❤️ 💖 💕</div>
+        
+        <div class="counter" id="days-counter">0</div>
+        <div class="label">Días de Amor</div>
+        
+        <div class="date-info">
+            Desde el <strong>19 de Enero de 2026</strong>
+        </div>
+
+        <div class="details">
+            <div class="detail-item">
+                📅 <span class="detail-number" id="weeks">0</span> semanas juntos
+            </div>
+            <div class="detail-item">
+                📆 <span class="detail-number" id="months">0</span> meses de amor
+            </div>
+            <div class="detail-item">
+                ⏰ <span class="detail-number" id="hours">0</span> horas compartidas
+            </div>
+            <div class="detail-item">
+                💓 <span class="detail-number">∞</span> momentos felices
+            </div>
+        </div>
+
+        <button onclick="window.location.href='index.html'" style="
+            margin-top: 30px;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            font-weight: bold;
+        ">
+            ← Volver al Inicio
+        </button>
+    </div>
+
+    <script>
+        // Fecha de inicio de la relación
+        const startDate = new Date('2026-01-19T00:00:00');
+
+        function updateCounter() {
+            const now = new Date();
+            const diffTime = Math.abs(now - startDate);
+            
+            // Calcular días
+            const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            
+            // Calcular semanas
+            const weeks = Math.floor(days / 7);
+            
+            // Calcular meses (aproximado)
+            const months = Math.floor(days / 30);
+            
+            // Calcular horas
+            const hours = Math.floor(diffTime / (1000 * 60 * 60));
+            
+            // Actualizar los elementos
+            document.getElementById('days-counter').textContent = days.toLocaleString();
+            document.getElementById('weeks').textContent = weeks.toLocaleString();
+            document.getElementById('months').textContent = months;
+            document.getElementById('hours').textContent = hours.toLocaleString();
+        }
+
+        // Actualizar cada segundo para que sea dinámico
+        updateCounter();
+        setInterval(updateCounter, 1000);
+    </script>
+</body>
+</html>

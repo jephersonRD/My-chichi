@@ -9,7 +9,7 @@
   
   [![Love](https://img.shields.io/badge/Amor-Infinito-ff1464?style=for-the-badge&logo=heart&logoColor=white)](https://github.com)
   [![Status](https://img.shields.io/badge/Relación-Activa-success?style=for-the-badge)](https://github.com)
-  [![Days](https://img.shields.io/badge/Días_Juntos-∞-764ba2?style=for-the-badge)](https://github.com)
+  [![Days](https://img.shields.io/badge/Días_Juntos-Ver_Contador-764ba2?style=for-the-badge&logo=calendar&logoColor=white)](./contador-dias.html)
 </div>
 
 ---
@@ -24,6 +24,7 @@ Este sitio web fue creado con todo mi amor para **Darlenis**, mi novia, mi chich
 - 💝 **100 Razones por las que la Amo** - Cada una escrita desde el corazón
 - 🎥 **Galería de Videos** - Momentos especiales juntos
 - 🌷 **Ramo de Tulipanes Animado** - Con efectos visuales hermosos
+- 📅 **Contador de Días en Tiempo Real** - Muestra los días exactos desde el 19/1/2026
 - 📱 **Diseño Responsive** - Funciona perfecto en cualquier dispositivo
 - 🎨 **Animaciones Personalizadas** - Corazones, fuegos artificiales y más
 
@@ -61,6 +62,7 @@ git clone https://github.com/tu-usuario/mi-amor-eterno.git
 ├── 📄 page2.html          # 100 razones por las que te amo
 ├── 📄 page3.html          # Videos y mensajes románticos
 ├── 📄 page4.html          # Ramo de tulipanes final
+├── 📄 contador-dias.html  # Contador de días en tiempo real
 ├── 📄 styles.css          # Estilos globales
 ├── 📄 script.js           # JavaScript principal
 ├── 📁 Assets/             # Recursos multimedia
