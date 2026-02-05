@@ -55,8 +55,8 @@ Para ver el contador de días que llevamos juntos desde el **19 de Enero de 2026
    - 📆 Meses compartidos
    - ⏰ Horas vividas juntos
 
-> **💡 Para GitHub Pages:** Si publicas este repositorio en GitHub Pages, el enlace será:  
-> `https://tu-usuario.github.io/nombre-repo/contador-dias.html`
+> **💡 Para GitHub Pages:** Días que llevamos juntos:  
+> `https://jephersonrd.github.io/My-chichi/contador-dias.html`
 
 ## 🚀 Cómo Ver el Sitio
 
@@ -171,3 +171,4 @@ Creado con 💖 para Darlenis
   ⭐ Si te gustó este proyecto, dale una estrella ⭐
   
 </div>
+
