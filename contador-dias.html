@@ -62,24 +62,9 @@
             font-style: italic;
         }
 
-        .broken-heart {
+        .hearts {
             font-size: 5rem;
             margin-bottom: 10px;
-            animation: shake 2s ease-in-out infinite;
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0) rotate(0deg); }
-            10% { transform: translateX(-5px) rotate(-3deg); }
-            20% { transform: translateX(5px) rotate(3deg); }
-            30% { transform: translateX(-3px) rotate(-2deg); }
-            40% { transform: translateX(3px) rotate(2deg); }
-            50% { transform: translateX(0) rotate(0deg); }
-        }
-
-        .hearts {
-            font-size: 3rem;
-            margin: 20px 0;
             animation: pulse 1.5s ease-in-out infinite;
         }
 
@@ -90,6 +75,18 @@
             50% {
                 transform: scale(1.1);
             }
+        }
+
+        .error-bar {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff8c00 0%, #ff6600 100%);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-top: 15px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.4);
         }
 
         .details {
@@ -133,28 +130,32 @@
 </head>
 <body>
     <div class="container">
-        <div class="broken-heart">💔</div>
+        <div class="hearts">❤️</div>
         <h1>Darlenis & Jepherson</h1>
         
-        <div class="counter" id="days-counter">62</div>
-        <div class="label">Relación Terminada</div>
+        <div class="counter" id="days-counter">90</div>
+        <div class="label">Días Juntos</div>
         
         <div class="date-info">
-            Desde el <strong>19 de Enero de 2026</strong> hasta el <strong>22 de Marzo de 2026</strong>
+            Desde el <strong>19 de Enero de 2026</strong> hasta hoy
+        </div>
+
+        <div class="error-bar">
+            ⛔ Error: Contador detenido el 22 de Marzo de 2026
         </div>
 
         <div class="details">
             <div class="detail-item">
-                📅 <span class="detail-number">8</span> semanas juntos
+                📅 <span class="detail-number">12</span> semanas juntos
             </div>
             <div class="detail-item">
-                📆 <span class="detail-number">2</span> meses de amor
+                📆 <span class="detail-number">3</span> meses de amor
             </div>
             <div class="detail-item">
-                ⏰ <span class="detail-number">1,488</span> horas compartidas
+                ⏰ <span class="detail-number">2,160</span> horas compartidas
             </div>
             <div class="detail-item">
-                💔 <span class="detail-number">0</span> momentos felices restantes
+                ❤️ <span class="detail-number">90</span> momentos felices
             </div>
         </div>
 
@@ -176,8 +177,12 @@
     </div>
 
     <script>
-        // Contador fijo en 62 días - nunca cambia
-        document.getElementById('days-counter').textContent = '62';
+        // Contador desde 19/1/2026 hasta hoy 19/4/2026
+        const startDate = new Date('2026-01-19');
+        const today = new Date('2026-04-19');
+        const diffTime = today - startDate;
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        document.getElementById('days-counter').textContent = diffDays;
     </script>
 </body>
 </html>
